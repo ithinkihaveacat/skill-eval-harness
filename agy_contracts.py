@@ -39,7 +39,8 @@ from json_contracts import (
 )
 
 # ---------------------------------------------------------------------------
-# Closed vocabularies, observed across real agy 1.1.8, 1.1.9 and 1.1.21 runs.
+# Closed vocabularies, observed across real agy 1.1.8, 1.1.9, 1.1.21, 1.2.5 and
+# 1.4.7 runs.
 #
 # Each is deliberately closed: a value a future release adds fails loudly on the
 # next run rather than being dropped and mis-scored, and the fix is to add the
@@ -140,6 +141,14 @@ AGY_GENERIC_TOOLS = (
     "capture_browser_console_logs", "capture_browser_screenshot",
     "click_browser_pixel", "execute_browser_javascript", "list_browser_pages",
     "open_browser_url", "read_browser_page",
+    # New in 1.4.7, and unresolved: advertised in every `init` event, but the
+    # model reports them unavailable when asked to call one (no plugin
+    # installed, a workspace workflow present), so no payload has been
+    # observed.  Plugin account listing and marketplace search act on the
+    # plugin catalog rather than the workspace, and `run_workflow` loads a
+    # workflow whose own steps arrive as ordinary tool calls -- but none of
+    # that is verified.  Re-classify from a capture that invokes them.
+    "list_plugin_accounts", "run_workflow", "search_marketplace",
 )
 
 AGY_CLASSIFIED_TOOLS = frozenset((

@@ -20,7 +20,7 @@ fails the stream rather than defaulting to a generic call. The procedure is
 
 | Fixture | `agy` version | Origin | Command |
 |---|---|---|---|
-| `advertised-tools.json` | 1.1.8 | real capture (2026-07-29) | tool list from the `init` event of a real `agy --output-format stream-json` run |
+| `advertised-tools.json` | **1.4.7** | real capture (2026-10-26) | tool list from the `init` event of a real `agy --output-format stream-json` run; see below |
 | `json-envelope-success.json` | 1.1.8 | real capture, redacted | `agy --print … --output-format json` |
 | `stream-json-success.jsonl` | 1.1.8 | real capture, redacted | `agy --print … --output-format stream-json` |
 | `stream-json-bad-line.jsonl` | 1.1.8 | derived from the success capture | success capture with one record truncated mid-line |
@@ -162,3 +162,22 @@ without ever opening `SKILL.md`) was not captured: every live probe that
 mounted a skill went straight to `view_file`. `stream-json-search-only.jsonl`
 therefore remains hand-constructed, updated only to swap its unadvertised
 `skill_search` tool name for `find_by_name`.
+
+## `advertised-tools.json` — real capture, `agy` 1.4.7 (2026-10-26)
+
+`agy` updates itself in place: a container built from the 1.1.21 release
+reported 1.4.7 after its first authenticated run, so a capture records whatever
+release is current rather than the one the image was built from. Captured in a
+disposable Debian `linux/arm64` container with its own, container-scoped OAuth
+login, from the `init` event of
+`agy --print "<reply with one word>" --output-format stream-json`. The list is
+stored sorted.
+
+A 1.2.5 capture advertised the same 57 tools as 1.1.21. 1.4.7 advertises 60:
+the same 57 plus `list_plugin_accounts`, `run_workflow` and
+`search_marketplace`. Asked in print mode to call each one, the model replied
+that the tool was not available and made no tool step, both with no plugin
+installed and with a workflow present under `.agents/workflows/`. With no
+payload to read, all three are classified generic, with the reasoning in
+`agy_contracts.py`'s `AGY_GENERIC_TOOLS` comment. The `init`, `step_update` and
+`result` shapes, including the `usage` counters, were unchanged.

@@ -165,10 +165,11 @@ for.
 So classify from an observed stream — invoke the tool once and read its
 `tool_info.parameters` — rather than inferring from the name. Where that is not
 possible, the generic bucket with a comment recording what is unresolved is the
-honest choice, and the file already carries two: `sed_file` is generic because
-whether it edits in place or only prints was never established, and
-`skill_search` sits in search until a capture settles whether it carries more
-signal than a generic grep. An unverified classification is worse than an
+honest choice, and the file already carries several: `sed_file` is generic
+because whether it edits in place or only prints was never established, and
+`list_plugin_accounts`, `run_workflow` and `search_marketplace` — new in 1.4.7
+— are generic because a model in print mode reports them unavailable, so no
+payload has been observed. An unverified classification is worse than an
 explicitly conservative one.
 
 ## Effort control and stop evidence
