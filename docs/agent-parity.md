@@ -43,7 +43,8 @@ The rule this exists to enforce: **a backend whose containment is
 variable named in the posture. Unattended trigger runs against a
 harness-assembled workspace are only safe on a host nobody minds losing, and
 that is an operator's decision rather than something a registry row inherits by
-default. No shipped backend uses the opt-in.
+default. No shipped backend uses the opt-in. `agy` is the one backend declared
+uncontained, so it advertises neither.
 
 Each row's posture is the `Containment` and `Config authority` columns of the
 matrix above, and the stated reason lives on the registry row itself.
