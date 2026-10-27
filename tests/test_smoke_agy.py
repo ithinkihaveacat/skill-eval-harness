@@ -6,7 +6,7 @@ surface: `--sandbox` restricts terminal operations only, and
 (antigravity-cli#36), so non-terminal tools such as `write_to_file` are outside
 the sandbox entirely. There is no config-home override (antigravity-cli#155), so
 the invoking user's Antigravity configuration is in play. A run asked to write
-outside its workspace succeeded on 1.1.8.
+outside its workspace succeeded on 1.1.8 and again on 1.1.21.
 
 That is why this smoke is deliberately *not* part of
 `scripts/smoke_supported_clis.py`, which sweeps every supported CLI in one

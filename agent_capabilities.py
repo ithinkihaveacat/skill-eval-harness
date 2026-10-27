@@ -813,7 +813,8 @@ BACKENDS: Mapping[str, BackendRegistration] = backend_registry(
                     "terminal operations only while "
                     "--dangerously-skip-permissions auto-approves the "
                     "sandbox-bypass prompt itself (antigravity-cli#36). A run "
-                    "asked to write outside its workspace succeeded on 1.1.8."
+                    "asked to write outside its workspace succeeded on 1.1.8 "
+                    "and again on 1.1.21."
                 ),
             ),
             notes=(
